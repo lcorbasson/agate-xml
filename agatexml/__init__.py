@@ -1,4 +1,4 @@
 #!/usr/bin/env python
 
-import agateexcel.table_xls
-import agateexcel.table_xlsx
+import agatexml.table_html
+import agatexml.table_xml
