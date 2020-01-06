@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 """
-This module contains the XLSX extension to :class:`Table <agate.table.Table>`.
+This module contains the XML extension to :class:`Table <agate.table.Table>`.
 """
 
 import datetime
@@ -14,7 +14,7 @@ import six
 NULL_TIME = datetime.time(0, 0, 0)
 
 
-def from_xlsx(cls, path, sheet=None, skip_lines=0, header=True, read_only=True, 
+def from_xml(cls, path, sheet=None, skip_lines=0, header=True, read_only=True, 
               reset_dimensions=False, **kwargs):
     """
     Parse an XLSX file.
@@ -135,4 +135,4 @@ def has_date_elements(cell):
     return 'd' in cell.number_format or 'y' in cell.number_format
 
 
-agate.Table.from_xlsx = classmethod(from_xlsx)
+agate.Table.from_xml = classmethod(from_xml)
