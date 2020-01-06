@@ -4,18 +4,18 @@ from setuptools import setup
 
 install_requires = [
     'agate>=1.5.0',
-    'xlrd>=0.9.4',
-    'openpyxl>=2.3.0'
+    'beautifulsoup4>=4.7.1',
+    'lxml>=4.3.2',
 ]
 
 setup(
-    name='agate-excel',
-    version='0.2.4',
-    description='agate-excel adds read support for Excel files (xls and xlsx) to agate.',
+    name='agate-xml',
+    version='0.0.1',
+    description='agate-xml adds read support for XML and HTML files to agate.',
     long_description=open('README.rst').read(),
-    author='Christopher Groskopf',
-    author_email='chrisgroskopf@gmail.com',
-    url='http://agate-excel.readthedocs.org/',
+    author='Loïc Corbasson',
+    author_email='loic.corbasson@gmail.com',
+    url='http://agate-xml.readthedocs.org/',
     license='MIT',
     classifiers=[
         'Development Status :: 4 - Beta',
@@ -38,7 +38,7 @@ setup(
         'Topic :: Software Development :: Libraries :: Python Modules',
     ],
     packages=[
-        'agateexcel'
+        'agatexml'
     ],
     install_requires=install_requires
 )
