@@ -146,7 +146,7 @@ def text_getter(obj):
     text : str or unicode
         The text from an individual DOM node.
     """
-    return obj.text
+    return str(obj.text)
 
 def parse_td(row_html):
     """
