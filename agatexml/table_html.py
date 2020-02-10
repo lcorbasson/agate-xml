@@ -15,24 +15,24 @@ import six
 
 
 MSO_NUMBER_FORMAT_TO_AGATE_TYPE = {
-    '0': agate.Number(),
-    '0\.0': agate.Number(),
-    '0\.00': agate.Number(),
-    '0\.000': agate.Number(),
-    '0\.0000': agate.Number(),
-    '0\.E+00': agate.Number(),
-    '0%': agate.Number(),
-    'Percent': agate.Number(),
-    '\#\ ?\/?': agate.Number(),
-    '\#\ ??\/??': agate.Number(),
-    '\#\ ???\/???': agate.Number(),
-    'Short Date': agate.DateTime(),
-    'Medium Date': agate.DateTime(),
-    'Long Date': agate.DateTime(),
-    'Short Time': agate.TimeDelta(),
-    'Medium Time': agate.TimeDelta(),
-    'Long Time': agate.TimeDelta(),
-    '\@': agate.Text(),
+    r'0': agate.Number(),
+    r'0\.0': agate.Number(),
+    r'0\.00': agate.Number(),
+    r'0\.000': agate.Number(),
+    r'0\.0000': agate.Number(),
+    r'0\.E+00': agate.Number(),
+    r'0%': agate.Number(),
+    r'Percent': agate.Number(),
+    r'\#\ ?\/?': agate.Number(),
+    r'\#\ ??\/??': agate.Number(),
+    r'\#\ ???\/???': agate.Number(),
+    r'Short Date': agate.Date(date_format='%d/%m/%Y'),
+    r'Medium Date': agate.Date(date_format='%d-%b-%y'),
+    r'Long Date': agate.Date(date_format=''),
+    r'Short Time': agate.DateTime(datetime_format='%H:%M'),
+    r'Medium Time': agate.DateTime(datetime_format='%I:%M %p'),
+    r'Long Time': agate.DateTime(datetime_format='%H:%M:%S:%f'),
+    r'\@': agate.Text(),
     # TODO add mm\/dd\/yy and so on...
 }
 
@@ -56,6 +56,7 @@ def from_html(cls, path, table_identifier=0, header=True, encoding='utf-8', mso_
             column_names = kwargs['column_names']
         del kwargs['column_names']
 
+    column_types = None
     if 'column_types' in kwargs:
         column_types = kwargs['column_types']
         del kwargs['column_types']
@@ -105,7 +106,7 @@ def from_html(cls, path, table_identifier=0, header=True, encoding='utf-8', mso_
         if header:
             column_names = head[0]
 
-        tables[table_identifier] = agate.Table(rows=body, column_names=column_names, **kwargs)
+        tables[table_identifier] = agate.Table(rows=body, column_names=column_names, column_types=column_types, **kwargs)
 
     if multiple:
         return agate.MappedSequence(tables.values(), tables.keys())
