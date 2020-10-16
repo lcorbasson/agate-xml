@@ -37,7 +37,8 @@ MSO_NUMBER_FORMAT_TO_AGATE_TYPE = {
 }
 
 
-def from_html(cls, path, table_identifier=0, header=True, encoding='utf-8', mso_number_formats_override=None,
+def from_html(cls, path, table_identifier=0, header=True, encoding='utf-8', 
+    mso_number_formats_override=None, row_limit=None,
     **kwargs):
     """
     Parse an HTML file.
@@ -90,6 +91,8 @@ def from_html(cls, path, table_identifier=0, header=True, encoding='utf-8', mso_
 
         head_rows = parse_thead_tr(table_html)
         body_rows = parse_tbody_tr(table_html)
+        if row_limit is not None:
+            body_rows = body_rows[0:row_limit]
         foot_rows = parse_tfoot_tr(table_html)
 
         if not head_rows:
